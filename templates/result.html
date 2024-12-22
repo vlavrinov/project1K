@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты прогноза погоды</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Результаты прогноза погоды</h1>
+
+    <h2>Город отправления: {{ weather_data.start_city }}</h2>
+    {% if weather_data.start_weather %}
+        <p>Максимальная температура: {{ weather_data.start_weather.Temperature.Maximum.Value }}°C</p>
+        <p>Минимальная температура: {{ weather_data.start_weather.Temperature.Minimum.Value }}°C</p>
+        {% if weather_data.start_weather.Day.Wind %}
+            <p>Скорость ветра (днем): {{ weather_data.start_weather.Day.Wind.Speed.Value }} м/с</p>
+        {% else %}
+            <p>Скорость ветра (днем): данные отсутствуют</p>
+        {% endif %}
+        {% if weather_data.start_weather.Night.Wind %}
+            <p>Скорость ветра (ночью): {{ weather_data.start_weather.Night.Wind.Speed.Value }} м/с</p>
+        {% else %}
+            <p>Скорость ветра (ночью): данные отсутствуют</p>
+        {% endif %}
+
+        <p>Есть осадки (днем): {{ "Да" if weather_data.start_weather.Day.HasPrecipitation else "Нет" }}</p>
+        <p>Тип осадков (днем): {{ weather_data.start_weather.Day.PrecipitationType }}</p>
+        <p>Интенсивность осадков (днем): {{ weather_data.start_weather.Day.PrecipitationIntensity }}</p>
+
+        <p>Есть осадки (ночью): {{ "Да" if weather_data.start_weather.Night.HasPrecipitation else "Нет" }}</p>
+
+        <p><b>Погода:</b> {{ weather_data.start_status }}</p>
+    {% else %}
+        <p>Нет данных о погоде для города {{ weather_data.start_city }}.</p>
+    {% endif %}
+
+    <h2>Город назначения: {{ weather_data.end_city }}</h2>
+    {% if weather_data.end_weather %}
+        <p>Максимальная температура: {{ weather_data.end_weather.Temperature.Maximum.Value }}°C</p>
+        <p>Минимальная температура: {{ weather_data.end_weather.Temperature.Minimum.Value }}°C</p>
+        {% if weather_data.end_weather.Day.Wind %}
+            <p>Скорость ветра (днем): {{ weather_data.end_weather.Day.Wind.Speed.Value }} м/с</p>
+        {% else %}
+            <p>Скорость ветра (днем): данные отсутствуют</p>
+        {% endif %}
+
+        {% if weather_data.end_weather.Night.Wind %}
+            <p>Скорость ветра (ночью): {{ weather_data.end_weather.Night.Wind.Speed.Value }} м/с</p>
+        {% else %}
+            <p>Скорость ветра (ночью): данные отсутствуют</p>
+        {% endif %}
+        <p>Есть осадки (днем): {{ "Да" if weather_data.end_weather.Day.HasPrecipitation else "Нет" }}</p>
+        <p>Тип осадков (днем): {{ weather_data.end_weather.Day.PrecipitationType }}</p>
+        <p>Интенсивность осадков (днем): {{ weather_data.end_weather.Day.PrecipitationIntensity }}</p>
+
+        <p>Есть осадки (ночью): {{ "Да" if weather_data.end_weather.Night.HasPrecipitation else "Нет" }}</p>
+
+        <p><b>Погода:</b> {{ weather_data.end_status }}</p>
+    {% else %}
+        <p>Нет данных о погоде для города {{ weather_data.end_city }}.</p>
+    {% endif %}
+
+    <a href="/">Вернуться на главную</a>
+</body>
+</html>

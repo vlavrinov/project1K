@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Прогноз погоды для маршрута</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="dash-container"></div>
+
+    <script>
+        // Встраиваем Dash приложение в div
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const dashContainer = document.getElementById('dash-container');
+            const script = document.createElement('script');
+            script.type = 'application/javascript';
+            script.src = 'http://127.0.0.1:8050/';
+            script.async = true;
+            dashContainer.appendChild(script);
+        });
+    </script>
+</body>
+</html>

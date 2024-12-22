@@ -1,0 +1,39 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    text-align: center;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    border: 1px solid #a5d6a7;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #a5d6a7;
+    border-radius: 3px;
+}
+
+input[type="submit"], button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button {
+    background-color: #8bc34a;
+}
